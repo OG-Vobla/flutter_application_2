@@ -22,7 +22,6 @@ class AuthPage extends StatelessWidget {
         // or simply save your changes to "hot reload" in a Flutter IDE).
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
-        primarySwatch: Colors.blue,
       ),
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
@@ -80,7 +79,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
               mainAxisAlignment: 
                 MainAxisAlignment.center,
-              children: [ 
+              children:<Widget> [ 
                 Padding(padding: EdgeInsets.only(top: 70)),
              Image.asset('assets/ClownIcon.png', width: 120, height: 90, fit: BoxFit.cover,),
              Padding(padding: EdgeInsets.only(top: 40)),
@@ -114,7 +113,7 @@ class _MyHomePageState extends State<MyHomePage> {
                  ),
               ),
               ),
-              Padding(padding: EdgeInsets.only(top: 20)),
+              Padding(padding: EdgeInsets.only(top: 0)),
               Container(
                 margin: EdgeInsets.fromLTRB(30, 10, 10, 10),
                 child: SizedBox(
@@ -139,10 +138,12 @@ class _MyHomePageState extends State<MyHomePage> {
                  ),
               ),
               ),
-              Container(child: ElevatedButton(onPressed: () {
-              {
-                  Navigator.push(context, CupertinoPageRoute(builder: (context)=>  HomePage()));
-                }
+              Container(child: ElevatedButton(
+                onPressed: () {
+              
+                    Navigator.push(context, new MaterialPageRoute(
+   builder: (context) => new HomePage())
+ );
                 
                 }, child: Text(
                     "Log In", 
@@ -181,6 +182,7 @@ class _MyHomePageState extends State<MyHomePage> {
               
               Container(padding: EdgeInsets.fromLTRB(10,10,20,10),child: Image.asset('assets/Baloons.png', width: 120, height: 120, fit: BoxFit.cover,  color: Colors.white.withOpacity(0.8), colorBlendMode: BlendMode.modulate,), ),
 
+               
               ],
             ),
             

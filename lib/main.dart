@@ -5,7 +5,6 @@ import 'package:flutter_application_2/homePage.dart';
 import 'authPage.dart';
 
 void main() async {
-  // DBConnection().connectDB();
   WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyThemeApp());
 }
@@ -17,11 +16,10 @@ class MyThemeApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      // home: AuthPage(),
       initialRoute: '/',
       routes: {
         '/': (context) => const AuthPage(),
-        '/home': (context) => HomePage(),
+        '/home': (context) =>const HomePage(),
       },
     );
   }
