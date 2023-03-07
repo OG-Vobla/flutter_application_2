@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_application_2/calendarPage.dart';
 import 'package:flutter_application_2/dealsPage.dart';
 import 'package:flutter_application_2/editDealPage.dart';
+import 'package:flutter_application_2/fakeDelyxePageSecond.dart';
 import 'package:flutter_application_2/homePage.dart';
 import 'package:flutter_application_2/fakeDelyxePage.dart';
 
@@ -122,7 +123,7 @@ setState(() {
       listSearchWidget(context),
       //const DealPages(), // 0
       const CalendarPage(), // 1
-      const FakeDealPages(),
+      const FakeDealPagesSecond(),
     ];
     AppBar appBarSearch = AppBar(
                       automaticallyImplyLeading: true,
