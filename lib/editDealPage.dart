@@ -43,6 +43,7 @@ void dispose() {
             height: 60,
 
             child: TextField(
+              
               onChanged: (value) {
                 dealList[dealList.indexOf(activeDeal)].title = value;
               },
@@ -50,12 +51,14 @@ void dispose() {
                 style:  TextStyle(color: Colors.white,  fontSize: 22),
               cursorColor: Colors.white,
                decoration: InputDecoration(
+                hintText: "Заголовок",
+                hintStyle:TextStyle(color: Color.fromARGB(100, 255, 255, 255),  fontSize: 22) ,
                   contentPadding: EdgeInsets.symmetric(vertical: 0.0, horizontal: 0.0),
                   enabledBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: Colors.white),
+                    borderSide: BorderSide(color: Color.fromARGB(134, 255, 255, 255)),
                   ),
                      focusedBorder: UnderlineInputBorder(
-                     borderSide: BorderSide(color: Colors.white,
+                     borderSide: BorderSide(color: Color.fromARGB(134, 255, 255, 255),
                      
                      ),
                     

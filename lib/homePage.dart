@@ -106,6 +106,9 @@ setState(() {
    builder: (context) => new EditDealPages())
  ).then((value) {
    setState(() {
+    if(activeDeal.title == "" && activeDeal.discription == ""){
+      dealList.removeLast();
+    }
      newDealList = dealList;
    });
  });
@@ -198,9 +201,12 @@ setState(() {
         activeDeal = dealList.last;
                         Navigator.push(context, new MaterialPageRoute(
    builder: (context) => new EditDealPages())).then((value) {
-     setState(() {
-       newDealList = dealList;
-     });
+   setState(() {
+    if(activeDeal.title == "" && activeDeal.discription == ""){
+      dealList.removeLast();
+    }
+     newDealList = dealList;
+   });
    });
    setState(() {
     newDealList = dealList;
