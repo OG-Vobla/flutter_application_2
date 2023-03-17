@@ -7,10 +7,7 @@ class FakeDealPagesSecond extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      
-      backgroundColor: Color.fromARGB(177, 207, 217, 255),
-      body:Column(
+    return Column(
         children: <Widget>[
  SizedBox(height: 100, child: ListView(
   scrollDirection: Axis.horizontal,
@@ -122,7 +119,7 @@ class FakeDealPagesSecond extends StatelessWidget {
       )),
  ],
            
-      )
+    
     );
   }
 }

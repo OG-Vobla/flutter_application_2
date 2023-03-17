@@ -2,8 +2,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_application_2/homePage.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter_application_2/services/services.dart';
+import 'package:flutter_application_2/services/model.dart';
+import 'package:flutter_application_2/services/services.dart';
 
-
+  DbConnection dbConnection = DbConnection();
 class AuthPage extends StatelessWidget {
   const AuthPage({super.key});
 
@@ -48,14 +53,10 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
-  final Email = TextEditingController();
+  bool sign = false;
+ TextEditingController  Email = TextEditingController();
+  TextEditingController  Password = TextEditingController();
 
-  @override
-  void dispose() {
-    // Clean up the controller when the widget is disposed.
-    Email.dispose();
-    super.dispose();
-  }
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
@@ -120,6 +121,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 width: 250,
                 height: 60,
                 child:  TextField(
+                
+
+                  controller: Password,
                   cursorColor: Colors.red,
                 decoration: InputDecoration(
                   contentPadding: EdgeInsets.symmetric(vertical: 18.0, horizontal: 30.0),
@@ -131,6 +135,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     
                   ),
                 filled: true,
+                
                 hintText: "Password",
                 fillColor: Color.fromARGB(255, 207, 217, 255),
                 hintStyle: TextStyle(color: Color.fromARGB(157, 0, 0, 0), fontFamily: "IMFellGreatPrimerSC-Regular", fontSize: 19)
@@ -139,14 +144,30 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               ),
               Container(child: ElevatedButton(
-                onPressed: () {
-              
-                    Navigator.push(context, new MaterialPageRoute(
-   builder: (context) => new HomePage())
- );
+                onPressed: () async {
+                            if(sign){
+                              if(isValidEmail(Email.text) && Password.text.length >= 6){
+
+                              }
+                            UserModel? user = await dbConnection.signUp(
+                            Email.text, Password.text);
+                            Navigator.push(context, MaterialPageRoute(builder: (context)=>HomePage()));
+                            }
+                        else{
+                            UserModel? user = await dbConnection.signIn(
+                            Email.text, Password.text);
+                          if (user != null) {
+                          Navigator.push(context, MaterialPageRoute(builder: (context)=>HomePage()));
+                        } else {
+                            setState(() {
+                              sign = true;
+                            });
+
+                        }
+                        }
                 
                 }, child: Text(
-                    "Log In", 
+                  sign ? "Sign Up" : "Sign In", 
                   style: TextStyle(color: Colors.black, fontFamily: "IMFellGreatPrimerSC-Regular", fontSize: 16),
                   ),
                   style: ButtonStyle(
@@ -163,8 +184,13 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               Padding(padding: EdgeInsets.only(top: 10)),
               InkWell(
+                onTap: () {
+                setState(() {
+                              sign = !sign;
+                            });
+                },
                 child: Text(
-                    "Sign In?", 
+                    sign ? "Sign In" : "Sign Up", 
                   style: TextStyle(color: Color.fromARGB(170, 255, 255, 255), fontFamily: "IMFellGreatPrimerSC-Regular", fontSize: 14, decoration: TextDecoration.underline),
                   ),
               ),
@@ -193,3 +219,10 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
+
+
+  bool isValidEmail(String? str) {
+    return RegExp(
+            r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$')
+        .hasMatch(str!);
+  }

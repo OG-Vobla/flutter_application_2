@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -7,6 +9,7 @@ import 'package:flutter_application_2/editDealPage.dart';
 import 'package:flutter_application_2/fakeDelyxePageSecond.dart';
 import 'package:flutter_application_2/homePage.dart';
 import 'package:flutter_application_2/fakeDelyxePage.dart';
+import 'package:flutter_application_2/drawer.dart';
 
 import 'package:flutter/material.dart';
 
@@ -214,7 +217,7 @@ setState(() {
          } ,
       child: Icon(Icons.add, color: Colors.white,), backgroundColor: Colors.black,): null,
       
-      drawer:const Drawer(),
+      drawer:const MenuDrawer(),
       backgroundColor: Color.fromARGB(177, 207, 217, 255),
   //     appBar: AppBar(
 
@@ -236,16 +239,18 @@ setState(() {
       body: Center(
         child: list.elementAt(selectedIndex),
       ),
-      bottomNavigationBar:ClipRRect(
+      bottomNavigationBar:  ClipRRect(
         
           borderRadius: BorderRadius.all(Radius.circular(20)),
         
-        child: SizedBox(height: 57, child: BottomNavigationBar(
+        child: BackdropFilter(
+	  filter: ImageFilter.blur(sigmaX: 3, sigmaY: 3),
+	  child: SizedBox(height: 57, child: BottomNavigationBar(
           
         onTap:
           onItemTap
         , 
-        backgroundColor: Colors.black,
+        backgroundColor: Color.fromARGB(0, 0, 0, 0),
         selectedLabelStyle: TextStyle(color: Color.fromARGB(255, 207, 217, 255), fontFamily: "IMFellGreatPrimerSC-Regular", fontSize: 14),
         unselectedLabelStyle: TextStyle(color:Color.fromARGB(255, 207, 217, 255), fontFamily: "IMFellGreatPrimerSC-Regular", fontSize: 14),
         showUnselectedLabels: true, 
@@ -271,7 +276,7 @@ setState(() {
           ),
         ],
 
-      ),))
+      ),)))
       
     );
     
