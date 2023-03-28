@@ -28,6 +28,7 @@ class HomePage extends StatefulWidget {
 
 class StateHomePage extends State<HomePage>{
     int selectedIndex = 0;
+    String searchText = "";
     List<Widget> widgets = <Widget>[ 
  // DealPages(),  
    CalendarPage(),];
@@ -54,9 +55,8 @@ setState(() {
   onItemSearch(String value) {
     setState(
       () {
-        newDealList = dealList
-            .where((element) => element.title!.contains(value))
-            .toList();
+        searchText = value;
+
         // return newDealList
         //     .where(
         //       (element) => element.title!.contains(value),
@@ -86,7 +86,10 @@ return StreamBuilder(
       return ListView.builder(
         itemCount: snapshot.data?.docs.length,
         itemBuilder: (BuildContext context, int index){
-                    return Card(
+          String newStr = snapshot.data?.docs[index].get('title');
+          if(tittleAppBar){
+            if(newStr.contains(searchText) ){
+            return Card(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(15),
             ),
@@ -126,7 +129,52 @@ return StreamBuilder(
               },
             ),
           );
-        }
+          }
+          }
+          else{
+            return Card(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15),
+            ),
+            child: ListTile(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(15),
+              ),
+              tileColor: Color.fromARGB(255, 0, 0, 0),
+              title: Text(snapshot.data?.docs[index].get('title')!,style: TextStyle(color: Colors.white, fontFamily: "IMFellGreatPrimerSC-Regular", fontSize: 20),),
+              subtitle: Text(snapshot.data?.docs[index].get('discription')!,style: TextStyle(color: Colors.white, fontFamily: "IMFellGreatPrimerSC-Regular", fontSize: 16),),
+              trailing: IconButton(
+              icon: Icon(
+                Icons.delete_outlined,
+                color: Color.fromARGB(255, 255, 255, 255),
+              ),
+              onPressed: () {
+                FirebaseFirestore.instance.collection('deals').doc(snapshot.data?.docs[index].id).delete();
+                    setState(() {
+                    newDealList= dealList;
+                  searchController.clear();
+                    tittleAppBar = false;
+                  });
+                },
+              ),
+              onTap: () {
+                Navigator.push(context, new MaterialPageRoute(
+   builder: (context) => new EditDealPages())
+ ).then((value) {
+   setState(() {
+    if(activeDeal.title == "" && activeDeal.discription == ""){
+      FirebaseFirestore.instance.collection('deals').doc(snapshot.data?.docs[index].id).delete();
+    }
+     FirebaseFirestore.instance.collection('deals').doc(snapshot.data?.docs[index].id).set({'title' : activeDeal.title,  'discription' : activeDeal.discription, });
+   });
+ });
+ activeDeal = new Deal(title:  snapshot.data?.docs[index].get('title'),discription: snapshot.data?.docs[index].get('discription'));
+              },
+            ),
+          );
+          }
+          return Card();       
+        },
         );
     }
   },
