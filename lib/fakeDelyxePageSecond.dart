@@ -23,9 +23,6 @@ class FakeDealPagesSecond extends StatelessWidget {
                 borderRadius: BorderRadius.circular(15),
               ),
               tileColor: Color.fromARGB(255, 0, 0, 0),
-              leading: Text( 
-                deal.id.toString(),style: TextStyle(color: Colors.white, fontFamily: "IMFellGreatPrimerSC-Regular", fontSize: 16),
-              ),
               trailing: const Icon(
                 Icons.arrow_right,
                 color: Color.fromARGB(255, 255, 255, 255),
@@ -50,9 +47,6 @@ class FakeDealPagesSecond extends StatelessWidget {
                 borderRadius: BorderRadius.circular(15),
               ),
               tileColor: Color.fromARGB(255, 0, 0, 0),
-              leading: Text( 
-                deal.id.toString(),style: TextStyle(color: Colors.white, fontFamily: "IMFellGreatPrimerSC-Regular", fontSize: 16),
-              ),
               trailing: const Icon(
                 Icons.arrow_right,
                 color: Color.fromARGB(255, 255, 255, 255),
@@ -77,9 +71,6 @@ class FakeDealPagesSecond extends StatelessWidget {
                 borderRadius: BorderRadius.circular(15),
               ),
               tileColor: Color.fromARGB(255, 0, 0, 0),
-              leading: Text( 
-                deal.id.toString(),style: TextStyle(color: Colors.white, fontFamily: "IMFellGreatPrimerSC-Regular", fontSize: 16),
-              ),
               trailing: const Icon(
                 Icons.arrow_right,
                 color: Color.fromARGB(255, 255, 255, 255),
@@ -104,9 +95,6 @@ class FakeDealPagesSecond extends StatelessWidget {
                 borderRadius: BorderRadius.circular(15),
               ),
               tileColor: Color.fromARGB(255, 0, 0, 0),
-              leading: Text( 
-                deal.id.toString(),style: TextStyle(color: Colors.white, fontFamily: "IMFellGreatPrimerSC-Regular", fontSize: 16),
-              ),
               trailing: const Icon(
                 Icons.arrow_right,
                 color: Color.fromARGB(255, 255, 255, 255),

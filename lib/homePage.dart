@@ -1,7 +1,10 @@
 import 'dart:ui';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_application_2/calendarPage.dart';
 import 'package:flutter_application_2/dealsPage.dart';
@@ -12,6 +15,7 @@ import 'package:flutter_application_2/fakeDelyxePage.dart';
 import 'package:flutter_application_2/drawer.dart';
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({
@@ -72,11 +76,17 @@ setState(() {
   @override
   Widget build(BuildContext context) {
     Widget listSearchWidget(BuildContext context) {
-
-            return ListView(
-      children: newDealList.map(
-        (e) {
-          return Card(
+return StreamBuilder(
+  stream: FirebaseFirestore.instance.collection('deals').snapshots(),
+  builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot){
+    if(!snapshot.hasData){
+      return Text('Нет записей');
+    }
+    else{
+      return ListView.builder(
+        itemCount: snapshot.data?.docs.length,
+        itemBuilder: (BuildContext context, int index){
+                    return Card(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(15),
             ),
@@ -85,18 +95,15 @@ setState(() {
                 borderRadius: BorderRadius.circular(15),
               ),
               tileColor: Color.fromARGB(255, 0, 0, 0),
-              leading: Text( 
-                e.id.toString(),style: TextStyle(color: Colors.white, fontFamily: "IMFellGreatPrimerSC-Regular", fontSize: 16),
-              ),
-              title: Text(e.title!,style: TextStyle(color: Colors.white, fontFamily: "IMFellGreatPrimerSC-Regular", fontSize: 20),),
-              subtitle: Text(e.discription!,style: TextStyle(color: Colors.white, fontFamily: "IMFellGreatPrimerSC-Regular", fontSize: 16),),
+              title: Text(snapshot.data?.docs[index].get('title')!,style: TextStyle(color: Colors.white, fontFamily: "IMFellGreatPrimerSC-Regular", fontSize: 20),),
+              subtitle: Text(snapshot.data?.docs[index].get('discription')!,style: TextStyle(color: Colors.white, fontFamily: "IMFellGreatPrimerSC-Regular", fontSize: 16),),
               trailing: IconButton(
               icon: Icon(
                 Icons.delete_outlined,
                 color: Color.fromARGB(255, 255, 255, 255),
               ),
               onPressed: () {
-                    dealList.remove(e);
+                FirebaseFirestore.instance.collection('deals').doc(snapshot.data?.docs[index].id).delete();
                     setState(() {
                     newDealList= dealList;
                   searchController.clear();
@@ -110,19 +117,67 @@ setState(() {
  ).then((value) {
    setState(() {
     if(activeDeal.title == "" && activeDeal.discription == ""){
-      dealList.removeLast();
+      FirebaseFirestore.instance.collection('deals').doc(snapshot.data?.docs[index].id).delete();
     }
-     newDealList = dealList;
+     FirebaseFirestore.instance.collection('deals').doc(snapshot.data?.docs[index].id).set({'title' : activeDeal.title,  'discription' : activeDeal.discription, });
    });
  });
- activeDeal = e;
- 
+ activeDeal = new Deal(title:  snapshot.data?.docs[index].get('title'),discription: snapshot.data?.docs[index].get('discription'));
               },
             ),
           );
-        },
-      ).toList(),
-    );
+        }
+        );
+    }
+  },
+);
+//             return ListView(
+//       children: newDealList.map(
+//         (e) {
+//           return Card(
+//             shape: RoundedRectangleBorder(
+//               borderRadius: BorderRadius.circular(15),
+//             ),
+//             child: ListTile(
+//               shape: RoundedRectangleBorder(
+//                 borderRadius: BorderRadius.circular(15),
+//               ),
+//               tileColor: Color.fromARGB(255, 0, 0, 0),
+//               title: Text(e.title!,style: TextStyle(color: Colors.white, fontFamily: "IMFellGreatPrimerSC-Regular", fontSize: 20),),
+//               subtitle: Text(e.discription!,style: TextStyle(color: Colors.white, fontFamily: "IMFellGreatPrimerSC-Regular", fontSize: 16),),
+//               trailing: IconButton(
+//               icon: Icon(
+//                 Icons.delete_outlined,
+//                 color: Color.fromARGB(255, 255, 255, 255),
+//               ),
+//               onPressed: () {
+//                     dealList.remove(e);
+//                     setState(() {
+//                     newDealList= dealList;
+//                   searchController.clear();
+//                     tittleAppBar = false;
+//                   });
+//                 },
+//               ),
+//               onTap: () {
+//                 Navigator.push(context, new MaterialPageRoute(
+//    builder: (context) => new EditDealPages())
+//  ).then((value) {
+//    setState(() {
+//     if(activeDeal.title == "" && activeDeal.discription == ""){
+//       dealList.removeLast();
+//     }
+//      newDealList = dealList;
+//    });
+//  });
+//  activeDeal = e;
+ 
+//               },
+//             ),
+//           );
+//         },
+//       ).toList(),
+//     );
     }
 
     final list = [
@@ -178,8 +233,6 @@ setState(() {
             onPressed: () {
               setState(() {
                 tittleAppBar = true;
-
-                
               });
             },
             icon: const Icon(Icons.search))
@@ -200,15 +253,16 @@ setState(() {
       selectedIndex == 0 ?
        FloatingActionButton(
         onPressed: () {
-        dealList.add(Deal(id: dealList.length == 0 ? 1 :  dealList.last.id! + 1, title: "", discription: ""));
-        activeDeal = dealList.last;
+        activeDeal = new Deal(title: "", discription: "");
                         Navigator.push(context, new MaterialPageRoute(
    builder: (context) => new EditDealPages())).then((value) {
    setState(() {
     if(activeDeal.title == "" && activeDeal.discription == ""){
-      dealList.removeLast();
+
     }
-     newDealList = dealList;
+    else{
+      FirebaseFirestore.instance.collection('deals').add({'title' : activeDeal.title,  'discription' : activeDeal.discription, } );
+    }
    });
    });
    setState(() {

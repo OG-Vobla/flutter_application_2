@@ -45,7 +45,7 @@ void dispose() {
             child: TextField(
               
               onChanged: (value) {
-                dealList[dealList.indexOf(activeDeal)].title = value;
+                (activeDeal).title = value;
               },
               controller: titleController,
                 style:  TextStyle(color: Colors.white,  fontSize: 22),
@@ -69,7 +69,7 @@ void dispose() {
             height: 100,
             child: TextField(
                             onChanged: (value) {
-                dealList[dealList.indexOf(activeDeal)].discription = value;
+                activeDeal.discription = value;
               },
               controller: discriptionController,
   style:  TextStyle(color: Colors.white,  fontSize: 22),

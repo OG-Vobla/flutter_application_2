@@ -26,9 +26,6 @@ class FakeDealPages extends StatelessWidget {
                 borderRadius: BorderRadius.circular(15),
               ),
               tileColor: Color.fromARGB(255, 0, 0, 0),
-              leading: Text( 
-                deal.id.toString(),style: TextStyle(color: Colors.white, fontFamily: "IMFellGreatPrimerSC-Regular", fontSize: 16),
-              ),
               title: Text(deal.title!,style: TextStyle(color: Colors.white, fontFamily: "IMFellGreatPrimerSC-Regular", fontSize: 20),),
               trailing: const Icon(
                 Icons.arrow_right,
@@ -52,9 +49,6 @@ class FakeDealPages extends StatelessWidget {
                 borderRadius: BorderRadius.circular(15),
               ),
               tileColor: Color.fromARGB(255, 0, 0, 0),
-              leading: Text( 
-                deal.id.toString(),style: TextStyle(color: Colors.white, fontFamily: "IMFellGreatPrimerSC-Regular", fontSize: 16),
-              ),
               title: Text(deal.title!,style: TextStyle(color: Colors.white, fontFamily: "IMFellGreatPrimerSC-Regular", fontSize: 20),),
               subtitle: Text(deal.discription!,style: TextStyle(color: Colors.white, fontFamily: "IMFellGreatPrimerSC-Regular", fontSize: 16),),
               trailing: const Icon(

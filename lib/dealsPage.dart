@@ -17,9 +17,6 @@ class DealPages extends StatelessWidget {
                 borderRadius: BorderRadius.circular(15),
               ),
               tileColor: Color.fromARGB(255, 0, 0, 0),
-              leading: Text( 
-                e.id.toString(),style: TextStyle(color: Colors.white, fontFamily: "IMFellGreatPrimerSC-Regular", fontSize: 16),
-              ),
               title: Text(e.title!,style: TextStyle(color: Colors.white, fontFamily: "IMFellGreatPrimerSC-Regular", fontSize: 20),),
               subtitle: Text(e.discription!,style: TextStyle(color: Colors.white, fontFamily: "IMFellGreatPrimerSC-Regular", fontSize: 16),),
               trailing: const Icon(
@@ -36,20 +33,17 @@ class DealPages extends StatelessWidget {
 }
 
 class Deal {
-  int? id;
   String? title;
   String? discription;
-  Deal({this.id, this.title, this.discription});
+  Deal({ this.title, this.discription});
 }
 
 List<Deal> dealList = [
   Deal(
-    id: 1,
     title: 'dfbd',
     discription: 'dfbdbf',
   ),
     Deal(
-    id: 2,
     title: 'AA',
     discription: 'a',
   ),

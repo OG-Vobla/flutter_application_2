@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_application_2/homePage.dart';
+import 'package:flutter_application_2/services/services.dart';
+import 'package:provider/provider.dart';
 import 'authPage.dart';
 import 'package:firebase_core/firebase_core.dart';
 
@@ -17,13 +19,17 @@ class MyThemeApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      initialRoute: '/',
-      routes: {
-        '/': (context) => const AuthPage(),
-        '/home': (context) =>const HomePage(),
-      },
+    return StreamProvider.value(
+      value: DbConnection().currentUser,
+      initialData: null,
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        initialRoute: '/',
+        routes: {
+          '/': (context) => const AuthPage(),
+          '/home': (context) =>const HomePage(),
+        },
+      ),
     );
   }
 }
