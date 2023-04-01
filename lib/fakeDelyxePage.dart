@@ -48,7 +48,7 @@ class FakeDealPages extends StatelessWidget {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(15),
               ),
-              tileColor: Color.fromARGB(255, 0, 0, 0),
+              tileColor: Colors.orange,
               title: Text(deal.title!,style: TextStyle(color: Colors.white, fontFamily: "IMFellGreatPrimerSC-Regular", fontSize: 20),),
               subtitle: Text(deal.discription!,style: TextStyle(color: Colors.white, fontFamily: "IMFellGreatPrimerSC-Regular", fontSize: 16),),
               trailing: const Icon(

@@ -24,6 +24,7 @@ class MyThemeApp extends StatelessWidget {
       initialData: null,
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
+        
         initialRoute: '/',
         routes: {
           '/': (context) => const AuthPage(),

@@ -25,7 +25,7 @@ void dispose() {
     titleController.text = activeDeal.title!;
     discriptionController.text = activeDeal.discription!;
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.grey,
     appBar:  AppBar(
       
                 automaticallyImplyLeading: true,
@@ -33,7 +33,7 @@ void dispose() {
            color:Colors.white, //change your color here
            
   ),
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.orange,
       centerTitle: true,
       
     ),

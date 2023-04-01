@@ -97,13 +97,13 @@ return StreamBuilder(
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(15),
               ),
-              tileColor: Color.fromARGB(255, 0, 0, 0),
+              tileColor: Colors.grey,
               title: Text(snapshot.data?.docs[index].get('title')!,style: TextStyle(color: Colors.white, fontFamily: "IMFellGreatPrimerSC-Regular", fontSize: 20),),
               subtitle: Text(snapshot.data?.docs[index].get('discription')!,style: TextStyle(color: Colors.white, fontFamily: "IMFellGreatPrimerSC-Regular", fontSize: 16),),
               trailing: IconButton(
               icon: Icon(
-                Icons.delete_outlined,
-                color: Color.fromARGB(255, 255, 255, 255),
+                Icons.delete,
+                color: Colors.red,
               ),
               onPressed: () {
                 FirebaseFirestore.instance.collection('deals').doc(snapshot.data?.docs[index].id).delete();
@@ -140,7 +140,7 @@ return StreamBuilder(
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(15),
               ),
-              tileColor: Color.fromARGB(255, 0, 0, 0),
+              tileColor: Colors.grey,
               title: Text(snapshot.data?.docs[index].get('title')!,style: TextStyle(color: Colors.white, fontFamily: "IMFellGreatPrimerSC-Regular", fontSize: 20),),
               subtitle: Text(snapshot.data?.docs[index].get('discription')!,style: TextStyle(color: Colors.white, fontFamily: "IMFellGreatPrimerSC-Regular", fontSize: 16),),
               trailing: IconButton(
@@ -237,9 +237,11 @@ return StreamBuilder(
     AppBar appBarSearch = AppBar(
                       automaticallyImplyLeading: true,
           iconTheme: IconThemeData(
-    color:Colors.white, //change your color here
+    color:Colors.red, //change your color here
   ),
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.orange
+        
+        ,
       
       centerTitle: true,
       title: TextField(
@@ -270,9 +272,9 @@ return StreamBuilder(
     AppBar appBar = AppBar(
                 automaticallyImplyLeading: true,
           iconTheme: IconThemeData(
-    color:Colors.white, //change your color here
+    color:Colors.red, //change your color here
   ),
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.orange,
       
       title: Text(title[selectedIndex]),
       centerTitle: true,
@@ -291,7 +293,7 @@ return StreamBuilder(
           iconTheme: IconThemeData(
     color:Colors.white, //change your color here
   ),
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.orange,
       
       title: Text(title[selectedIndex]),
       centerTitle: true,
@@ -317,10 +319,10 @@ return StreamBuilder(
     newDealList = dealList;
    });
          } ,
-      child: Icon(Icons.add, color: Colors.white,), backgroundColor: Colors.black,): null,
+      child: Icon(Icons.add, color: Colors.black,), backgroundColor: Colors.lightGreen,): null,
       
       drawer:const MenuDrawer(),
-      backgroundColor: Color.fromARGB(177, 207, 217, 255),
+      backgroundColor: Colors.greenAccent,
   //     appBar: AppBar(
 
   //       actions: [
@@ -352,7 +354,7 @@ return StreamBuilder(
         onTap:
           onItemTap
         , 
-        backgroundColor: Color.fromARGB(0, 0, 0, 0),
+        backgroundColor: Colors.grey,
         selectedLabelStyle: TextStyle(color: Color.fromARGB(255, 207, 217, 255), fontFamily: "IMFellGreatPrimerSC-Regular", fontSize: 14),
         unselectedLabelStyle: TextStyle(color:Color.fromARGB(255, 207, 217, 255), fontFamily: "IMFellGreatPrimerSC-Regular", fontSize: 14),
         showUnselectedLabels: true, 

@@ -82,10 +82,13 @@ class _MyHomePageState extends State<MyHomePage> {
                 MainAxisAlignment.center,
               children:<Widget> [ 
                 Padding(padding: EdgeInsets.only(top: 70)),
-             Image.asset('assets/ClownIcon.png', width: 120, height: 90, fit: BoxFit.cover,),
+             //Image.asset('assets/ClownIcon.png', width: 120, height: 90, fit: BoxFit.cover,),
+             FlutterLogo(
+                  size: 120,
+             ),
              Padding(padding: EdgeInsets.only(top: 40)),
             Text(
-              "Clown Mobile",
+              "Auth",
               style: TextStyle(color: Colors.white, fontFamily: "IMFellGreatPrimerSC-Regular", fontSize: 27),),
               Padding(padding: EdgeInsets.only(top: 25)),
             Container(
@@ -196,17 +199,17 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
                   Row(
                 children: [
-              Container(padding: EdgeInsets.fromLTRB(20,30,0,0),child:  
+              /*Container(padding: EdgeInsets.fromLTRB(20,30,0,0),child:  
               Image.asset('assets/Baloons.png', width: 140, height: 140, fit: BoxFit.cover,  color: Colors.white.withOpacity(0.7), colorBlendMode: BlendMode.modulate,
               ),),
               Container(padding: EdgeInsets.fromLTRB(30,0,0,30),child:  
               Image.asset('assets/Baloons.png', width: 140, height: 140, fit: BoxFit.cover,  color: Colors.white.withOpacity(0.4), colorBlendMode: BlendMode.modulate,
-              ),),
+              ),),*/
              
                 ],
                   ),
               
-              Container(padding: EdgeInsets.fromLTRB(10,10,20,10),child: Image.asset('assets/Baloons.png', width: 120, height: 120, fit: BoxFit.cover,  color: Colors.white.withOpacity(0.8), colorBlendMode: BlendMode.modulate,), ),
+              //Container(padding: EdgeInsets.fromLTRB(10,10,20,10),child: Image.asset('assets/Baloons.png', width: 120, height: 120, fit: BoxFit.cover,  color: Colors.white.withOpacity(0.8), colorBlendMode: BlendMode.modulate,), ),
 
                
               ],

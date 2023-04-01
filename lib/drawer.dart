@@ -14,13 +14,13 @@ class MenuDrawer extends StatelessWidget {
       child: ListView(
         children: [
           DrawerHeader(
-              decoration: BoxDecoration(color: Colors.black),
+              decoration: BoxDecoration(color: Colors.white),
               child: UserAccountsDrawerHeader(
-                accountEmail: const Text('gggg26705@gmail.com', style: TextStyle(color: Colors.black, fontFamily: "IMFellGreatPrimerSC-Regular", fontSize: 21),),
-                accountName: const Text("Zubr", style: TextStyle(color: Colors.black, fontFamily: "IMFellGreatPrimerSC-Regular", fontSize: 21),),
+                accountEmail: const Text('minecart771@gmail.,com', style: TextStyle(color: Colors.black, fontFamily: "IMFellGreatPrimerSC-Regular", fontSize: 21),),
+                accountName: const Text("ffffff", style: TextStyle(color: Colors.black, fontFamily: "IMFellGreatPrimerSC-Regular", fontSize: 21),),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),
-                    color: Colors.white),
+                    color: Colors.orange),
                 currentAccountPicture: Container(
                   alignment: Alignment.topLeft,
                   child: const CircleAvatar(
